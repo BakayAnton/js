@@ -1,0 +1,82 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>HomeWork 1 (functions: hello, helloAnton)</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	
+	<script type="text/javascript">
+		
+		function hello (name) {
+			alert('Привет ' + name);
+		}
+		
+		function helloAnton (name) {
+			if (typeof(name) == 'string') {
+				var autorName = 'Anton';
+				if (autorName === name) {
+					alert('Привет '+ autorName);
+				} else {
+					alert(name + ', я Вас не знаю!');
+				}
+			} else {
+				alert('Необходимо ввести строку. Вы ввели "' + typeof(name) + '"');
+			}
+		}
+
+		//var temp = 2;
+		//hello('Olya');
+		//helloAnton ('4343');
+		function perimeter (a, b, c) {
+		    return false;
+		    var perimeter;
+		    perimeter = a + b + c;
+		    alert('ttt');
+		    return perimeter;
+		} 
+		
+		alert(perimeter (2,3,4));
+
+		//alert(perimeter (2,3,4));
+		
+		
+	</script>
+</head>
+<body>
+<div class="wrapper">
+	<canvas id="canvas" style="width:1000px; height:300px;"></canvas>
+</div>
+<script type="text/javascript">
+	/*var canvas = document.getElementById('canvas').getContext('2d');
+		
+
+		function animate(widthX, animTime){
+			var t=0,
+				animStep = (widthX/animTime)*10;
+			var anim = setInterval(function() {     
+		    	if (t >= widthX) {
+		    		t=widthX;
+		    		canvas.fillStyle = '#000';
+			   		canvas.fillRect(100, 100, t, 20);
+			   		clearInterval(anim);
+			   		console.log('animStoped');
+		    	} else {
+		    		if (t>=widthX/3){
+		    			canvas.rotate(Math.PI / 10000);
+		    		}
+		    		canvas.fillStyle = '#000';
+				    canvas.fillRect(100, 100, t, 10);
+				    t+=animStep;
+				    console.log(t);
+		    	}
+			    
+
+		    }, 10);
+		}
+
+		animate(100,1000);
+    */
+</script>
+</body>
+</html>
