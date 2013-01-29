@@ -25,11 +25,6 @@
 			//если есть хеш в адресной строке. при загрузке страницы скролим до раздела(id раздела берем из хеша)
 			var curHash = location.hash;
 			if (curHash) {
-				if (content.scrollTop() != 0){//фикс для хрома(хром по дефолту скролит на текущий хеш)
-					content.animate({
-						scrollTop: $(curHash).position().top
-					}, 300);
-				}
 				sidebarMenu.find($('a[href="'+curHash+'"]')).addClass('current');
 			}
 
@@ -734,7 +729,7 @@
 			</section>
 
 			<!-- Цикл for -->
-			<section class="section">
+			<section id="cycle" class="section">
 				<h2>Цикл for</h2>
 				
 				<div class="code">
@@ -998,6 +993,74 @@
 					&lt;/script&gt;
 				</div>
 				<p>Невозможно назначить несколько обработчиков события таким образом(для этого существуют другие методы). Последний обработчик заменит старый. </p>
+				<p>С помощью такого метода можно назначить несколько обработчиков собитий для одного элемента. Но метод отличается в браузерах IE. Для совместимости используется подобный код:</p>
+				<div class="code" contenteditable="true">
+					var elem = document.getElementById('elId');<br>
+					if(elem.addEventListener){<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;elem.addEventListener('click', func);<span class="code-comment">//первый параметр это событие, которое нужно обрабатывать. Функция-обработчик пишется без скобок</span><br>
+					} else if (elem.attachEvent){ <span class="code-comment">//обработчик событий для IE</span><br>
+					&nbsp;&nbsp;&nbsp;&nbsp;elem.attachEvent('onclick', func);<span class="code-comment">//первый параметр это событие с "on", которое нужно обрабатывать. Функция-обработчик пишется без скобок</span><br>
+					} else{<br>
+						elem.onclick = func; <span class="code-comment">//Поведение для старых браузеров</span><br>
+					}<br>
+					<span class="code-comment">//Задание: создать функцию bind(element, event, func)</span><br>
+				</div>
+			</section>
+
+			<!-- Всплытие событий -->
+			<section class="section">
+				<h2>Всплытие событий</h2>
+				<p>Кроссбраузерное решение для прекращения всплытия событий:</p>
+				<div class="code">
+					element.onclick = function(event) {<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;event = event || window.event; // Кроссбраузерно получить событие<br>
+
+					&nbsp;&nbsp;&nbsp;&nbsp;if (event.stopPropagation) { // существует ли метод?<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Стандартно:<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event.stopPropagation();<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;} else {<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Вариант IE&lt;9<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;event.cancelBubble = true;<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+					}
+				</div>
+
+				<button id="b2">Нажми меня</button>
+				<script type="text/javascript">
+					var elem = document.getElementById('b2');
+					elem.onclick = function(event){
+						console.log(event);
+						event.stopPropagation();
+					};
+					
+				</script>
+			</section>
+
+			<!-- Поиск элементов в DOM -->
+			<section class="section">
+				<h2>Поиск элементов в DOM</h2>
+			
+				<div class="code">
+					var b1 = document.getElementById('b1')<span class="code-comment">//вернет элемент с id="idElement" и сохранит его в переменной</span><br>
+					
+					document.childNodes <span class="code-comment">//вернет массив детей элемента </span><br>
+					document.childNodes[1] <span class="code-comment">//вернет второй элемент из массива детей элемента</span><br>
+					document.childNodes[1].childNodes<br>
+
+					b1.parentNode <span class="code-comment">//вернет родителя</span><br>
+					b1.firstChild<br>
+					b1.lastChild <br>
+					b1.nextSibling <br>
+					b1.previousSibling <br>
+
+					document.documentElement <span class="code-comment">//вернет html тег</span><br>
+					document.body <span class="code-comment">//вернет body тег</span><br>
+
+					document.getelementsByTagName('tagName') <span class="code-comment">//вернет все теги tagName</span><br>
+					document.getelementsByClassName('className') <span class="code-comment">//вернет все элемнеты с классом className (работает в ие 9+)</span><br>
+				</div>
+
+				
 			</section>
 		</article>
 	</div>
