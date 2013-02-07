@@ -131,7 +131,7 @@ dt {font-style: italic;}
 *******************************/
 	.content {height: 100%; overflow: auto; background: url(../images/logo_smart.png) right bottom no-repeat;}
 	.article {padding: 0 10px; position: relative;}
-		.section {min-height: 1000px; padding: 0 10px; margin: 15px 0; border-bottom:1px solid #DDDDDD;}
+		.section {min-height: 1000px; padding: 0 10px 100px; margin: 15px 0; border-bottom:1px solid #DDDDDD;}
 		.cover {margin-bottom:100px;}
 			.list {padding: 10px 20px; list-style: outside disc;}
 			.default-table {border:1px solid #ccc; border-collapse: collapse;}

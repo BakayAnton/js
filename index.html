@@ -798,7 +798,20 @@
 					}<br>
 					alert('Готово!');
 				</div>
-				
+				<p>Задача. Какая запись в консоле будет после выполнения цикла?</p>
+				<div class="code">
+					outerloop: <br>
+				    for(var i = 0; i < 10; i++){<br>
+				    &nbsp;&nbsp;&nbsp;&nbsp;innerloop:<br>
+				    &nbsp;&nbsp;&nbsp;&nbsp;for(var j = 0; j < 10; j++) {<br>
+				    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (j > 3) break;<br>
+				    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (i == 2)break innerloop;<br>
+				    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (i == 4)break outerloop;<br>
+				    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log("i = "+ i + " j = "+ j);<br>
+				    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+				    }<br>
+				    console.log("Final i = "+ i +" j = "+ j);
+				</div>
 			</section>
 
 			<!-- Массивы -->
@@ -836,6 +849,15 @@
 				<div class="code">
 					numbers.length <span class="code-comment">//возвращает количество элементов в массиве</span><br>
 					numbers.length = 0 <span class="code-comment">//длина массива становится равной нулю, то есть происходит очистка массива</span>
+				</div>
+				<div class="code" contenteditable="true">
+					var arr = [1,2,3];<br>
+					<br>
+					var a = arr;<br>
+					a[0] = 5;<br>
+					<br>
+					alert(arr[0]);<br>
+					alert(a[0]);
 				</div>
 			</section>
 
@@ -900,28 +922,6 @@
 					Math.tan()<br>
 					Math.pow()<br>
 					Math.max()<br>
-				</div>
-			</section>
-
-			<!-- setTimeout и setInterval -->
-			<section class="section">
-				<h2>setTimeout и setInterval</h2>
-				<p>Обе функции позволяют запланировать выполнение некоторой функции с заданной задержкой или интервалом. Они возвращают уникальный идентификатор, по которому в дальнейшем можно будет отменить выполнение запланированной функции</p>
-				<h3>setTimeout</h3>
-				<div class="code">
-					function hello() {console.log('Hello')}<br>
-					var timeuoutId = setTimeout(hello, 1000); <span class="code-comment">//Функция hello() вызовется через одну секунду(1000 миллисекунд)</span>
-				</div>
-
-				<h3>setInterval </h3>
-				<div class="code">
-					function hello() {console.log('Hello')}<br>
-					var intervalID = setInterval (hello, 1000); <span class="code-comment">//Функция hello() будет вызываться каждую секунду(1000 миллисекунд)</span>
-				</div>
-				<h3>Очистка таймаутов и интервалов</h3>
-				<div class="code">
-					clearTimeout(timeuoutId); <span class="code-comment">//Отменит расписание для вызова функции hello()</span><br>
-					clearInterval(intervalID); <span class="code-comment">//Отменит периодническое выполнение функции hello();</span>
 				</div>
 			</section>
 
@@ -1036,31 +1036,75 @@
 				</script>
 			</section>
 
-			<!-- Поиск элементов в DOM -->
+						<!-- Поиск элементов в DOM -->
 			<section class="section">
 				<h2>Поиск элементов в DOM</h2>
 			
 				<div class="code">
 					var b1 = document.getElementById('b1')<span class="code-comment">//вернет элемент с id="idElement" и сохранит его в переменной</span><br>
-					
+					<br>
 					document.childNodes <span class="code-comment">//вернет массив детей элемента </span><br>
 					document.childNodes[1] <span class="code-comment">//вернет второй элемент из массива детей элемента</span><br>
 					document.childNodes[1].childNodes<br>
-
+					<br>
 					b1.parentNode <span class="code-comment">//вернет родителя</span><br>
 					b1.firstChild<br>
 					b1.lastChild <br>
 					b1.nextSibling <br>
 					b1.previousSibling <br>
-
+					<br>
 					document.documentElement <span class="code-comment">//вернет html тег</span><br>
 					document.body <span class="code-comment">//вернет body тег</span><br>
+					<br>
+					element.getelementsByTagName('tagName') <span class="code-comment">//вернет все теги tagName</span><br>
+					element.getelementsByClassName('className') <span class="code-comment">//вернет все элемнеты с классом className (работает в ие 9+)</span><br>
+					element.querySelectorAll('css')<span class="code-comment">//вернет все элемнеты по css селектору CSS3, в IE8 по CSS 2.1</span><br>
+					element.querySelector('css')<span class="code-comment">//вернет только первый элемент по селектору</span><br>
+					<br>
+					node.cloneNode(deep)<span class="code-comment">//клонирует в память элемент</span><br>
+				</div>
+			</section>
 
-					document.getelementsByTagName('tagName') <span class="code-comment">//вернет все теги tagName</span><br>
-					document.getelementsByClassName('className') <span class="code-comment">//вернет все элемнеты с классом className (работает в ие 9+)</span><br>
+			<!-- Работа с DOM -->
+			<section class="section">
+				<h2>Работа с DOM</h2>
+			
+				<div class="code">
+					document.createElement('div') <span class="code-comment">//Создаст в памяти тег div</span><br>
+					document.createTextNode('text') <span class="code-comment">//Создаст в памяти текстовый узел 'text'</span><br>
+					<br>
+					element.tagName<span class="code-comment">//В этом свойстве хранится название тега элемента</span><br>
+					element.innerHTML<span class="code-comment">//В этом свойстве хранится html код, находящийся внутри элемента</span><br>
+					<br>
+					parrent.appendChild(newChild)<span class="code-comment">//Метод вставляет элемент newChild в конец элемента parrent и возвращает ссылку на вставленный элемент</span><br>
+					parrent.removeChild(сhild)<span class="code-comment">//Метод удаляет из DOM'а элемент сhild из родителя parrent и возвращает ссылку на удаленный элемент(Элемент удалился из дома, но его можно сохранить в память)</span><br>
+					var replacedNode = parentNode.replaceChild(newChild, oldChild);<span class="code-comment">//Метод заменяет один элемент другим и возвращает старый(replacedNode==oldChild)</span><br>
+					<br>
+					var insertedElement = parentElement.insertBefore(newElement, referenceElement);<span class="code-comment">//Если referenceElement не передан или равен null, то newElement вствится в начало элемента parentElement. Если referenceElement передан, то новый элемент вставится ПЕРЕД(Before) ним. Метод вернет ссылку на новый элемент, по сути это будет newElement</span><br>
+					element.insertAdjacentHTML(position, html);<span class="code-comment">//position принимает значения: beforebegin, afterbegin, beforeend, afterend. Вставляет переданный html код в соответствующую позицию отностительно элемента element</span><br>
+				</div>
+			</section>
+
+			<!-- setTimeout и setInterval -->
+			<section class="section">
+				<h2>setTimeout и setInterval</h2>
+				<p>Обе функции позволяют запланировать выполнение некоторой функции с заданной задержкой или интервалом. Они возвращают уникальный идентификатор, по которому в дальнейшем можно будет отменить выполнение запланированной функции</p>
+				<h3>setTimeout</h3>
+				<div class="code">
+					function hello() {console.log('Hello')}<br>
+					var timeuoutId = setTimeout(hello, 1000); <span class="code-comment">//Функция hello() вызовется через одну секунду(1000 миллисекунд)</span>
 				</div>
 
-				
+				<h3>setInterval </h3>
+				<div class="code">
+					function hello() {console.log('Hello')}<br>
+					var intervalID = setInterval (hello, 1000); <span class="code-comment">//Функция hello() будет вызываться каждую секунду(1000 миллисекунд)</span>
+				</div>
+				<h3>Очистка таймаутов и интервалов</h3>
+				<div class="code">
+					clearTimeout(timeuoutId); <span class="code-comment">//Отменит расписание для вызова функции hello()</span><br>
+					clearInterval(intervalID); <span class="code-comment">//Отменит периодническое выполнение функции hello();</span>
+				</div>
 			</section>
 		</article>
 	</div>
@@ -1068,3 +1112,4 @@
 
 </body>
 </html>
+
